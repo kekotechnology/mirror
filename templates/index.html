@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+  <meta http-equiv="refresh" content="1800" >
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+  <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,300i" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+
+	<title>Keko Digital Mirror</title>
+</head>
+
+<body onload="startTime()">
+  <div class="row">
+    <div class="column">
+  	   <img src= "{{ url_for('static',filename='images/logo.png') }}" width="90px"/>
+        <div id="time"></div>
+        <p>{{ date }}</p>
+    </div>
+    <div class="column">
+        <img class="icon" src="{{ weathericon }}" width="150"/>
+        <p class="temp">{{ temp }} &#176;C</p>
+    </div>
+  </div>
+    <p class="quote">{{ quote }}</p>
+  <h2>BOARDROOM MEETINGS TODAY</h2>
+    {% for event in cal %}
+      <p class="events">{{ event}}</p>
+    {% endfor %}
+  <div id="news" class="status">
+    <h2>NEWS LATEST</h2>
+  	{% for title in news %}
+      <p>{{ title }} </p>
+  {% endfor %}
+  </div>
+  <div id="tube" class="status">
+    <h2>TUBE STATUS</h2>
+    <!--<img src= "{{ url_for('static',filename='images/tube.svg') }}" width="50px"/>-->
+    {% for status in tube %}
+      <p>{{ status }}</p>
+    {% endfor %}
+    {% if not status %}
+      <p>All lines operating a Good Service</p>
+    {% else %}
+      <p>All other lines operating a Good Service</p>
+    {% endif %}
+  </div>
+ </body>
